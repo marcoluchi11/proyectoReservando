@@ -53,10 +53,41 @@ describe('funcion Obtener Puntuacion()', function(){
 describe('funcion calificar()',function(){
 
 
-        it('',function(){
+        it('Se testea que si el valor no es un numero, no se agrega',function(){
 
+            var prueba = 'abcd';
+            var notas = listadoDeRestaurantes[2].calificaciones.length;
+            listadoDeRestaurantes[2].calificar(prueba);
+            expect(listadoDeRestaurantes[2].calificaciones.length).to.equal(notas);
+        })
+        it('Se testea que dado un valor mayor a 10, no se agrega a la lista',function(){
 
-            
+            var prueba = 11;
+            var notas = listadoDeRestaurantes[2].calificaciones.length;
+            listadoDeRestaurantes[2].calificar(prueba);
+            expect(listadoDeRestaurantes[2].calificaciones.length).to.equal(notas);
+        })
+        it('Se testea que dado un valor menor a 0, no se agrega a la lista',function(){
+
+            var prueba = -1;
+            var notas = listadoDeRestaurantes[2].calificaciones.length;
+            listadoDeRestaurantes[2].calificar(prueba);
+            expect(listadoDeRestaurantes[2].calificaciones.length).to.equal(notas);
+
         })
 
+})
+
+describe('funcion buscarRestaurante()', function(){
+
+
+    
+
+})
+
+describe('funcion obtenerRestaurante()', function(){
+
+
+
+        
 })
