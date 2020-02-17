@@ -99,6 +99,26 @@ describe('funcion buscarRestaurante()', function(){
 describe('funcion obtenerRestaurante()', function(){
 
 
+        it('Se testea que al dar mal uno de los parametros, el arreglo filtrado es vacio',function(){
 
+                var prueba = listado.obtenerRestaurantes('Pizza','Nueva York', '16:00');
+
+                expect(prueba.length).to.equal(0);
+        })
+
+        it('Se testea que al no poner ningun parametro, el arreglo filtrado es vacio',function(){
+        
+                var prueba = listado.obtenerRestaurantes();
+                expect(prueba.length).to.equal(0);
+        })
+
+        it('Se testea que al dar correctamente los datos, el arreglo filtrado es correcto',function(){
+
+
+
+            var prueba = listado.obtenerRestaurantes('Ensalada','Nueva York','12:00');
+
+            expect(prueba.length).to.equal(1);
+        })
         
 })
