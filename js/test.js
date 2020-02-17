@@ -80,9 +80,20 @@ describe('funcion calificar()',function(){
 
 describe('funcion buscarRestaurante()', function(){
 
+        it('Se testea que se pone un id incorrecto, y devuelve que no se encontro restaurant valido',function(){
 
-    
+             var prueba = listado.buscarRestaurante(120);
+             expect(prueba).to.equal('No se ha encontrado ningún restaurant');
+      })
+      it('Se testea que se ponen letras como id, y devuelve que no se encontro restaurant valido',function(){
+             var prueba = listado.buscarRestaurante('restaurant2');
+             expect(prueba).to.equal('No se ha encontrado ningún restaurant');
+      })
 
+      it('Se testea que no se pone nada como parametro y deveulve que no se encontro restaurant valido',function(){
+             var prueba = listado.buscarRestaurante();
+             expect(prueba).to.equal('No se ha encontrado ningún restaurant');
+      })
 })
 
 describe('funcion obtenerRestaurante()', function(){
