@@ -39,18 +39,13 @@ Restaurant.prototype.obtenerPuntuacion = function() {
 function acumulador(arr){
         var sumatoria = 0;
         arr.forEach(function(elem){
-
                 sumatoria += elem;
         })
-           return sumatoria;
+        return sumatoria;
 }
 
 function prom(Numeros){
-
             var sumatoria = acumulador(Numeros);
-
             var promedio = sumatoria / Numeros.length;
-
             return Math.round(promedio*10) / 10;
-
 }
