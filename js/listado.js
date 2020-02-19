@@ -35,11 +35,7 @@ Listado.prototype.obtenerCiudades = function() {
         c.push(this.restaurantes[i].ubicacion);
     }
     //Se crea un nuevo array donde se van a agregar las ciudades pero sin repetirse
-    var c2 = c.filter(function(elem, index, self) {
-        return index === self.indexOf(elem);
-    });
-
-    return c2.sort();
+    return eliminarRepetidos(c).sort();
 }
 
 //Obtiene todos los rubros de los restaurantes sin repetidos. Su funcionamiento es similar a obtC()
@@ -48,12 +44,7 @@ Listado.prototype.obtenerRubros = function() {
     for (var i = 0; i < this.restaurantes.length; i++) {
         r.push(this.restaurantes[i].rubro);
     }
-
-    var r2 = r.filter(function(elem, index, self) {
-        return index === self.indexOf(elem);
-    });
-
-    return r2.sort();
+        return eliminarRepetidos(r).sort();
 }
 
 //Obtiene todos los horarios de los restaurantes (sin repetidos). Está funcionalidad es un poco más compleja ya que un restaurante
@@ -76,11 +67,7 @@ Listado.prototype.obtenerHorarios = function() {
     });
 
     //En este arreglo vamos a poner todos los horarios pero sin repetidos
-    var h2 = h.filter(function(elem, index, self) {
-        return index === self.indexOf(elem);
-    });
-
-    return h2.sort();
+    return eliminarRepetidos(h).sort();
 }
 
 //Función que recibe los filtros que llegan desde el HTML y filtra el arreglo de restaurantes.
@@ -135,3 +122,12 @@ var listadoDeRestaurantes = [
 
 //Se crea un nuevo listado, asignandole el listado de restaurantes creado anteriormente.
 var listado = new Listado(listadoDeRestaurantes)
+
+function eliminarRepetidos(arr){
+
+    var arregloFinal= arr.filter(function(elem, index, self) {
+        return index === self.indexOf(elem);
+    });
+    
+    return arregloFinal;
+}
