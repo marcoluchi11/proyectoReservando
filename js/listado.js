@@ -29,22 +29,21 @@ Listado.prototype.buscarRestaurante = function(id) {
 //Obtiene todas las ciudades de los restaurantes sin repetidos
 Listado.prototype.obtenerCiudades = function() {
     //Array donde se van a ir agregando las ciudades (van a estar repetidas)
-    var c = [];
-    //Se recorre el array de restaurantes y se va agregando al array creado, todas las ubicaciones o ciudades encontradas
-    for (var i = 0; i < this.restaurantes.length; i++) {
-        c.push(this.restaurantes[i].ubicacion);
-    }
+   var ciudades = this.restaurantes.map(function(elem){
+
+            return elem.ubicacion;
+   })
     //Se crea un nuevo array donde se van a agregar las ciudades pero sin repetirse
-    return eliminarRepetidos(c).sort();
+    return eliminarRepetidos(ciudades).sort();
 }
 
 //Obtiene todos los rubros de los restaurantes sin repetidos. Su funcionamiento es similar a obtC()
 Listado.prototype.obtenerRubros = function() {
-    var r = [];
-    for (var i = 0; i < this.restaurantes.length; i++) {
-        r.push(this.restaurantes[i].rubro);
-    }
-        return eliminarRepetidos(r).sort();
+
+    var rubros = this.restaurantes.map(function(elem){
+            return elem.rubro;
+    })
+        return eliminarRepetidos(rubros).sort();
 }
 
 //Obtiene todos los horarios de los restaurantes (sin repetidos). Está funcionalidad es un poco más compleja ya que un restaurante
@@ -52,22 +51,20 @@ Listado.prototype.obtenerRubros = function() {
 //convertir en uno solo
 Listado.prototype.obtenerHorarios = function() {
     //En este array se van a cargar los arrays de horarios, que luego vamos convertir en un solo array
-    var arregloH = [];
-    //Recorremos el array de restaurantes y vamos agregando todos los array de horarios
-    for (var i = 0; i < this.restaurantes.length; i++) {
-        arregloH.push(this.restaurantes[i].horarios);
-    }
+    var arregloH = this.restaurantes.map(function(elem){
+        return elem.horarios;
+    })
 
     //En este arreglo vamos a poner todos los horarios, uno por uno
-    var h = [];
+    var horarios = [];
     arregloH.forEach(function(a) {
         a.forEach(function(hor) {
-            h.push(hor)
+            horarios.push(hor)
         });
     });
 
     //En este arreglo vamos a poner todos los horarios pero sin repetidos
-    return eliminarRepetidos(h).sort();
+    return eliminarRepetidos(horarios).sort();
 }
 
 //Función que recibe los filtros que llegan desde el HTML y filtra el arreglo de restaurantes.
