@@ -42,4 +42,3 @@ function prom(Numeros){
             var promedio = sumatoria / Numeros.length;
             return Math.round(promedio*10) / 10;
 }
-
