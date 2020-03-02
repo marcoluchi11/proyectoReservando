@@ -1,6 +1,5 @@
 var Reserva = function(horario,cant,precio,descuento){
 
-
     this.horario = horario;
     this.cantidadDePersonas = cant;
     this.precio = precio;
@@ -14,35 +13,40 @@ Reserva.prototype.calcularPrecioBase = function(){
 }
 
 Reserva.prototype.calcularPrecioTotal = function(){
-   var adicionales = 0;
-   switch(this.descuento){
+   var precioFinal = this.calcularPrecioBase() + Adicionales(this.horario, this.calcularPrecioBase()) - Descuento(this.descuento, this.calcularPrecioBase(), this.cantidadDePersonas);
+   return precioFinal;
+}
+
+function Descuento(discount, precioBase ,cantPersonas){
+   switch(discount){
       case 'DES15':
-         this.descuento = this.calcularPrecioBase() * 15 / 100;
+         discount = precioBase  * 15 / 100;
          break;
       case 'DES200':
-         this.descuento = 200;
+         discount = 200;
          break;
-      case 'DES1':    
-         this.descuento = this.precio;
+      case 'DES1':   
+        discount =  precioBase  / cantPersonas;
          break;
       }
-   if(this.cantidadDePersonas >= 4 && this.cantidadDePersonas <= 6){
-            this.descuento += this.calcularPrecioBase() * 5 / 100;
-    } 
-   if(this.cantidadDePersonas>=7 && this.cantidadDePersonas <= 8){
-           this.descuento += this.calcularPrecioBase() * 10 / 100;
-    }
-   if(this.cantidadDePersonas > 8){
-           this.descuento += this.calcularPrecioBase() * 15 / 100;
-    }
-
- 
-   if((this.horario.getHours() >= 13 && this.horario.getHours() <= 14) || (this.horario.getHours() >= 20 && this.horario.getHours() <= 21)){
-       adicionales += this.calcularPrecioBase() * 5 / 100;
-    }
-   if(this.horario.getDay() === 5 || this.horario.getDay() === 6 || this.horario.getDay() === 7){
-      adicionales += this.calcularPrecioBase() * 10 / 100;
-    } 
-   var precioFinal = this.calcularPrecioBase() + adicionales - this.descuento;
-   return precioFinal;
+      if(cantPersonas >= 4 && cantPersonas <= 6){
+         discount += precioBase * 5 / 100;
+ } 
+      if(cantPersonas>= 7 && cantPersonas <= 8){
+         discount += precioBase  * 10 / 100;
+   }
+      if(cantPersonas > 8){
+          discount += precioBase  * 15 / 100;
+   }
+ return discount;
+}
+function Adicionales(hora,precioBase ){
+   var adicionales = 0;
+   if((hora.getHours() >= 13 && hora.getHours() <= 14) || (hora.getHours() >= 20 && hora.getHours() <= 21)){
+      adicionales += precioBase  * 5 / 100;
+   }
+  if(hora.getDay() === 5 || hora.getDay() === 6 || hora.getDay() === 7){
+     adicionales += precioBase  * 10 / 100;
+   }
+   return adicionales;
 }
