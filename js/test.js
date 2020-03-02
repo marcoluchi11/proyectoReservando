@@ -122,3 +122,19 @@ describe('funcion obtenerRestaurante()', function(){
         })
         
 })
+
+describe('funcion Reserva()', function(){
+
+
+        it('se testea que se calcule bien el precio base',function(){
+
+                var reserva1 = new Reserva (new Date(2018, 7, 24, 11, 00), 8, 350, "DES1");
+                expect(reserva1.calcularPrecioBase()).to.equal(2800);
+        })
+        it('Se testea que se calcule bien el precio Total', function(){
+
+                        
+                var reserva2 = new Reserva (new Date(2018, 7, 27, 14, 100), 2, 150, "DES200")
+                expect(reserva2.calcularPrecioTotal()).to.equal(100);
+        })
+})
